@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="managementDashboard">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Management Dashboard</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<script src="lib/jquery-1.10.2.js"></script>
+
+</head>
+
+<body ng-controller="FilterController" >
+
+	Select country:<br /> 
+	<input type="text" ng-model="filterByText" class="input-text" ng-focus="focus=true" ng-blur="focus=false" ng-init="focus=false"/> 
+
+	<div class="filter-items" ng-show="focus" >
+
+		<input type="checkbox" class="select-all" ng-model="master" ng-change="changeMasterSelection(master)"/>Select all<br />
+		
+		<div ng-repeat="group in countries">
+			<div ng-init="extend = false">
+				<img alt="Extend" src="img/sq_plus_icon25.png" ng-click="extend = true" ng-hide="extend" /> 
+				<img alt="Collapse" src="img/sq_minus_icon25.png" ng-click="extend = false" ng-show="extend" /> 
+				<input type="checkbox" ng-model="group.selected"  ng-change="changeGroupSelection(group)">{{ group.groupName }} <br>
+				<div style="padding-left: 25px" ng-repeat="country in group.subitems | filter : filterByText" ng-show="extend">
+					<input type="checkbox"  ng-model="country.selected">{{ country.name }} <br>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="lib/angular-1.2.1.js"></script>
+	<script src="lib/angular-resource.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

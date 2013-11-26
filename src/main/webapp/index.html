@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="managementDashboard">
+<head>
+<title>Angular JS test application</title>
+</head>
+<body>
+	<h3>Flat Filters</h3>
+	<div ng-controller="FilterController">
+
+		Action Type <br /> 		
+		<select ng-model="actionType" ng-options="item for item in flatFiltersMap['Action Type']"></select>		
+		<br />
+		
+		Operation Mode <br /> 
+		<input type="text" ng-model="operationModeName" />
+		<br />
+		<ul>
+			<li	ng-repeat="item in flatFiltersMap['Operation Mode'] | filter:operationModeName">{{ item }}</li>
+		</ul>
+
+	</div>
+
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-resource.js"></script>
+	<script src="js/main.js"></script>
+</body>

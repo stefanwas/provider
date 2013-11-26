@@ -1,0 +1,100 @@
+<script type="text/javascript" language="javascript">
+        function selectCheckBox()
+        {
+            var total="";
+            for(var i=0; i < document.form.languages.length; i++)
+            {
+                if(document.form.languages[i].checked)
+                {
+                    total +=document.form.languages[i].value + "\n";
+                }
+            }
+            if(total=="")
+            {
+                alert("select checkboxes");
+            }
+            else
+            {
+                alert("Selected Values are : \n"+total);
+            }
+        }
+        
+        $(function () {
+            $('.checkall').on('click', function () {
+                $(this).closest('div').find(':checkbox').prop('checked', this.checked);
+            });
+
+            $('.plus-hover').on('click', function () {
+            	$(this).hide();
+            	$(this).nextAll('.minus-hover').show();
+            	$(this).nextAll('#sub1').slideToggle(100);
+            });
+
+            $('.minus-hover').on('click', function () {
+            	$(this).hide();
+            	$(this).prevAll('.plus-hover').show();
+            	$(this).nextAll('#sub1').slideToggle(100);
+            });
+
+        });
+
+    </script>
+
+    
+    			<div ng-init="extend1 = false">
+				<img alt="Extend" src="img/sq_plus_icon25.png" ng-click="extend1 = true" ng-hide="extend1" /> 
+				<img alt="Collapse" src="img/sq_minus_icon25.png" ng-click="extend1 = false" ng-show="extend1" /> 
+				
+				<input type="checkbox" ng-model="selectEurope">Europe Static<br>
+
+				<div style="padding-left:25px" ng-repeat="country in europeCountries | filter : selected" ng-show="extend1">
+					<input type="checkbox" id="{{country}}" ng-model="country.selected">{{ country.name }} <br>
+				</div>
+			</div>
+
+			<div ng-init="extend2 = false">
+				<img alt="Extend" src="img/sq_plus_icon25.png" ng-click="extend2 = true" ng-hide="extend2" /> 
+				<img alt="Collapse" src="img/sq_minus_icon25.png" ng-click="extend2 = false" ng-show="extend2" /> 
+				<input type="checkbox" ng-model="selectEurope">Asia Static<br>
+
+				<div style="padding-left: 25px" ng-repeat="country in asiaCountries | filter : selected" ng-show="extend2">
+					<input type="checkbox" id={{country}}>{{ country.name }} <br>
+				</div>
+			</div>
+			
+			------------------
+			
+	Select country:<br />
+	<select>
+		<option>
+					
+
+		</option>
+	</select>
+	<br />
+	
+		Select country:<br />
+	<input type=text list=browsers >
+	<datalist id=browsers >
+	   <option> Google </option>
+	   <option> IE9 </option>
+	</datalist>			
+	
+	
+	====================== OLD JS
+	
+		
+	
+	$scope.europeCountries = [{name: "England", selected: false}, 
+	                          	{name: "Spain", selected: false},
+								{name: "Germany", selected: false},
+	                        	{name: "Poland", selected: false},
+								{name: "Portugal", selected: false},
+	                        	{name: "Austria", selected: false},
+								{name: "Russia", selected: false}];
+	
+	$scope.asiaCountries = [{name: "China", selected: false},
+	                        {name: "Japan", selected: false},
+	                        {name: "India", selected: false},
+	                        {name: "Philipines", selected: false},
+	                        {name: "Vietnam", selected: false}];
