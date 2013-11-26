@@ -9,9 +9,9 @@ controllers.FilterController = function($scope, $resource) {
 	
 	
 	$scope.countries = [
-	                   {groupName: "Europe",
+	                   {name: "Europe",
 						selected: false, 
-	                 	subitems: [
+	                 	items: [
 		                    {name: "England", selected: false}, 
 	                       	{name: "Spain", selected: false},
 							{name: "Germany", selected: false},
@@ -20,9 +20,9 @@ controllers.FilterController = function($scope, $resource) {
 	                     	{name: "Austria", selected: false},
 							{name: "Russia", selected: false}]},
 							
-						{groupName: "Asia",
+						{name: "Asia",
 						 selected: false,
-		                 subitems: [
+		                 items: [
 							{name: "China", selected: false},
 							{name: "Japan", selected: false},
 							{name: "India", selected: false},
@@ -31,32 +31,8 @@ controllers.FilterController = function($scope, $resource) {
 						}
 						];
 	
-	$scope.changeMasterSelection = function(selection) {
-		angular.forEach($scope.countries, function(group, index) {
-			group.selected = selection;
-			$scope.changeGroupSelection(group);
-		});
-	};
-
-	$scope.changeGroupSelection = function(group) {
-		angular.forEach(group.subitems, function(item, index) {
-			item.selected = group.selected;
-		});
-	};
 	
-	$scope.$watch('countries', function () {
-		angular.forEach($scope.countries, function(group, index) {
-			if (!group.selected) {
-				$scope.master = false;
-			};
-			angular.forEach(group.subitems, function(item, index) {
-				if (!item.selected) {
-					group.selected = false;
-					$scope.master = false;
-				}
-			});
-		});
-	}, true);
+
 	
 	//------------------
 	
@@ -86,18 +62,48 @@ controllers.FilterController = function($scope, $resource) {
 
 };
 
-managementDashboard.directive('combo', function () {
+managementDashboard.controller(controllers);
+
+managementDashboard.directive('dashboardFilter', function () {
+	
+	function link(scope, element, attrs) {
+		
+		scope.changeMasterSelection = function(selection) {
+			angular.forEach(scope.collection, function(group, index) {
+				group.selected = selection;
+				scope.changeGroupSelection(group);
+			});
+		};
+
+		scope.changeGroupSelection = function(group) {
+			angular.forEach(group.items, function(item, index) {
+				item.selected = group.selected;
+			});
+		};
+		
+		scope.$watch('collection', function () {
+			angular.forEach(scope.collection, function(group, index) {
+				if (!group.selected) {
+					scope.master = false;
+				};
+				angular.forEach(group.items, function(item, index) {
+					if (!item.selected) {
+						group.selected = false;
+						scope.master = false;
+					}
+				});
+			});
+		}, true);		
+	}
+	
     return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            scope.$watch(attr.myFocus, function (n, o) {
-                if (n != 0 && n) {
-                    element[0].focus();
-                }
-            });
-        }
+        restrict: 'E',
+        scope: {collection: '='},
+        templateUrl: 'dashboard-filter.html',
+        link : link
     };
 });
 
-managementDashboard.controller(controllers);
+
+
 

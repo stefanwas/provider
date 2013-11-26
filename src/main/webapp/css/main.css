@@ -10,17 +10,6 @@ span {
 	cursor: pointer;
 }
 
-.filter-items {
-	overflow: auto;
-	width: 200px;
-	height: 220px;
-	border: 1px solid #cccccc; 
-	-webkit-border-radius : 3px;
-	-moz-border-radius : 3px; 
-	border-radius : 3px;	
-	color: #555555;	
-	background-color: #ffffff;
-}
 
 .input-text {
 	width: 200px;
@@ -49,4 +38,20 @@ select {
 .select-all {
 	margin-left: 20px;
 	indeterminate: true;
+}
+
+.filter-item {
+	padding-left: 25px;
+}
+
+.filter {
+	overflow: auto;
+	width: 200px;
+	height: 220px;
+	border: 1px solid #cccccc; 
+	-webkit-border-radius : 3px;
+	-moz-border-radius : 3px; 
+	border-radius : 3px;	
+	color: #555555;	
+	background-color: #ffffff;
 }
