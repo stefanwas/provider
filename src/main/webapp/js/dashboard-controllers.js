@@ -5,12 +5,12 @@ angular.module('dashboard.controllers', ['ngResource'])
 
 		$scope.countries = [
 			                   {name: "Europe",
-								selected: false, 
+								selected: true, 
 			                 	items: [
-				                    {name: "England", selected: false}, 
-			                       	{name: "Spain", selected: false},
-									{name: "Germany", selected: false},
-			                     	{name: "Poland", selected: false},
+				                    {name: "England", selected: true}, 
+			                       	{name: "Spain", selected: true},
+									{name: "Germany", selected: true},
+			                     	{name: "Poland", selected: true},
 									{name: "Portugal", selected: false},
 			                     	{name: "Austria", selected: false},
 									{name: "Russia", selected: false}]},

@@ -36,7 +36,7 @@ angular.module('dashboard.directives', [])
 	    return {
 	        restrict: 'E',
 	        scope: {collection: '='},
-	        templateUrl: 'dashboard-filter.html',
+	        templateUrl: 'templates/dashboard-filter.tpl.html',
 	        link : link
 	    };
 });

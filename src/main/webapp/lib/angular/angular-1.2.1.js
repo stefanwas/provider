@@ -16714,7 +16714,7 @@ var CONSTANT_VALUE_REGEXP = /^(true|false|\d+)$/;
 var ngValueDirective = function() {
   return {
     priority: 100,
-    compile: function(tpl, tplAttr) {
+    compile: function(templates, tplAttr) {
       if (CONSTANT_VALUE_REGEXP.test(tplAttr.ngValue)) {
         return function ngValueConstantLink(scope, elm, attr) {
           attr.$set('value', scope.$eval(attr.ngValue));
@@ -19451,17 +19451,17 @@ var ngTranscludeDirective = ngDirective({
  * @example
   <doc:example>
     <doc:source>
-      <script type="text/ng-template" id="/tpl.html">
+      <script type="text/ng-template" id="/templates.html">
         Content of the template.
       </script>
 
-      <a ng-click="currentTpl='/tpl.html'" id="tpl-link">Load inlined template</a>
-      <div id="tpl-content" ng-include src="currentTpl"></div>
+      <a ng-click="currentTpl='/templates.html'" id="templates-link">Load inlined template</a>
+      <div id="templates-content" ng-include src="currentTpl"></div>
     </doc:source>
     <doc:scenario>
       it('should load template defined inside script tag', function() {
-        element('#tpl-link').click();
-        expect(element('#tpl-content').text()).toMatch(/Content of the template/);
+        element('#templates-link').click();
+        expect(element('#templates-content').text()).toMatch(/Content of the template/);
       });
     </doc:scenario>
   </doc:example>

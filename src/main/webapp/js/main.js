@@ -67,9 +67,10 @@ controllers.FilterController = function($scope, $resource) {
 	
 	//------------------
 	
-	
+	console.log('XXXXXXXXXXXXX 1');
 	
 	var filterDataService = $resource(filterDataProvider);
+	console.log('XXXXXXXXXXXX 2');
 	
 	filterDataService.get(function(result) {
 		
