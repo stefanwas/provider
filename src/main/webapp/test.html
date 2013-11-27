@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="managementDashboard">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Management Dashboard</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<script src="lib/jquery-1.10.2.js"></script>
-	<script type="text/ng-template" id="dashboard-filter.html" src="html/dashboard-filter.html" ></script>
+	<script type="text/ng-template" id="dashboard-filter.html" src="html/dashboard-filter.html" >
 	
 
-<!--   	<input type="text" ng-model="filteringText" class="input-text" ng-focus="showDropdown=true" ng-init="showDropdown=false"/> 
+   	<input type="text" ng-model="filteringText" class="input-text" ng-focus="showDropdown=true" ng-init="showDropdown=false"/> 
 
 	<div class="filter" ng-show="showDropdown" >
 
@@ -24,18 +25,25 @@
 		</div>
 
 	</div>
-	</script> -->
+	</script> 
 </head>
 
 <body ng-controller="FilterController" >
 
-	Select country:
-	<br /> 
-	<dashboard-filter collection="countries"> </dashboard-filter>
-	<br />
+	<table>
+		<tbody>
+			<tr>
+				<td>Select country:</td>
+				<td>Select division:</td>
+			</tr>
+			<tr>
+				<td><dashboard-filter collection="countries"> </dashboard-filter></td>
+				<td><dashboard-filter collection="divisions"> </dashboard-filter></td>
+			</tr>
+			
+		</tbody>
+	</table>
 	
-
-
 	<script src="lib/angular-1.2.1.js"></script>
 	<script src="lib/angular-resource.js"></script>
 	<script src="js/main.js"></script>
