@@ -1,7 +1,7 @@
 /* Directives */
 
 angular.module('dashboard.directives', [])
-	.directive('dashboardFilter', function () {
+	.directive('hierarchicalFilter', function () {
 	
 		function link(scope, element, attrs) {
 			
@@ -36,7 +36,33 @@ angular.module('dashboard.directives', [])
 	    return {
 	        restrict: 'E',
 	        scope: {collection: '='},
-	        templateUrl: 'templates/dashboard-filter.tpl.html',
+	        templateUrl: 'templates/hierarchical-filter.tpl.html',
 	        link : link
 	    };
-});
+	})
+	.directive('flatFilter', function () {
+	
+		function link(scope, element, attrs) {
+			
+			scope.changeMasterSelection = function(selection) {
+				angular.forEach(scope.collection, function(item, index) {
+					item.selected = selection;
+				});
+			};
+	
+			scope.$watch('collection', function () {
+				angular.forEach(scope.collection, function(item, index) {
+					if (!item.selected) {
+						scope.master = false;
+					};
+				});
+			}, true);		
+		}
+		
+	    return {
+	        restrict: 'E',
+	        scope: {collection: '='},
+	        templateUrl: 'templates/flat-filter.tpl.html',
+	        link : link
+	    };
+	}) ;

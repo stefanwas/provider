@@ -56,6 +56,23 @@ angular.module('dashboard.controllers', ['ngResource'])
 		        	        	        ]
 		               	        }
 		    ];
+			
+			$scope.cardTypes = [
+			                    {name: "Green card", selected: false},
+			                    {name: "Red card", selected: false}
+			                    ];
+			
+			$scope.categories = [
+			                    {name: "Ability to manage complexity", selected: false},
+			                    {name: "Complete and timely quotes", selected: false},
+			                    {name: "Ease of doing business", selected: false},
+			                    {name: "Engineering / design capability", selected: false},
+			                    {name: "Environment, Health and Safety", selected: false},
+			                    {name: "Industry and application knowledge", selected: false},
+			                    {name: "Issue resolution", selected: false},
+			                    {name: "Lead time", selected: false},
+			                    {name: "Commissioning support", selected: false}
+			                    ];
 		
 	});
 

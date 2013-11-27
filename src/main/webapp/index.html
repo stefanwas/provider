@@ -11,12 +11,28 @@
 	<table>
 		<tbody>
 			<tr>
+				<td>Card types</td>
+				<td>Categories</td>
+			</tr>
+			<tr>
+				<td><flat-filter collection="cardTypes"> </dashboard-filter></td>
+				<td><flat-filter collection="categories"> </dashboard-filter></td>
+			</tr>
+			
+		</tbody>
+	</table>
+
+	<br/>
+	
+	<table>
+		<tbody>
+			<tr>
 				<td>Region / Country</td>
 				<td>ABB Division / BU</td>
 			</tr>
 			<tr>
-				<td><dashboard-filter collection="countries"> </dashboard-filter></td>
-				<td><dashboard-filter collection="divisions"> </dashboard-filter></td>
+				<td><hierarchical-filter collection="countries"> </dashboard-filter></td>
+				<td><hierarchical-filter collection="divisions"> </dashboard-filter></td>
 			</tr>
 			
 		</tbody>
