@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="managementDashboard">
+<html ng-app="dashboard">
 <head>
 	<title>Management Dashboard</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	<script src="lib/jquery-1.10.2.js"></script>
+	<!-- <script src="lib/jquery-1.10.2.js"></script> -->
 	<script type="text/ng-template" id="dashboard-filter.html" src="html/dashboard-filter.html" >
 	
 
@@ -33,8 +33,8 @@
 	<table>
 		<tbody>
 			<tr>
-				<td>Select country:</td>
-				<td>Select division:</td>
+				<td>Region / Country</td>
+				<td>ABB Division / BU</td>
 			</tr>
 			<tr>
 				<td><dashboard-filter collection="countries"> </dashboard-filter></td>
@@ -46,6 +46,8 @@
 	
 	<script src="lib/angular-1.2.1.js"></script>
 	<script src="lib/angular-resource.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/dashboard.js"></script>
+	<script src="js/dashboard-controllers.js"></script>
+	<script src="js/dashboard-directives.js"></script>
 </body>
 </html>
