@@ -45,15 +45,16 @@ angular.module('dashboard.directives', [])
 		function link(scope, element, attrs) {
 			
 			scope.changeMasterSelection = function(selection) {
-				angular.forEach(scope.collection, function(item, index) {
+				angular.forEach(scope.collection, function(item) {
 					item.selected = selection;
 				});
 			};
 	
 			scope.$watch('collection', function () {
-				angular.forEach(scope.collection, function(item, index) {
+				angular.forEach(scope.collection, function(item) {
 					if (!item.selected) {
 						scope.master = false;
+						return;
 					};
 				});
 			}, true);		
