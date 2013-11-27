@@ -1,10 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="managementDashboard">
+<html lang="en" ng-app="dashboard">
 <head>
 	<title>Management Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<script type="text/ng-template" id="dashboard-filter.html" src="html/dashboard-filter.html" >
+	
+
+   	<input type="text" ng-model="filteringText" class="input-text" ng-focus="showDropdown=true" ng-init="showDropdown=false"/> 
+
+	<div class="filter" ng-show="showDropdown" >
+
+		<input type="checkbox" class="select-all" ng-model="master" ng-change="changeMasterSelection(master)"/>Select all<br />
+		
+		<div ng-repeat="group in collection" ng-init="extend = false">
+			<img alt="Extend" src="img/sq_plus_icon25.png" ng-click="extend = true" ng-hide="extend" /> 
+			<img alt="Collapse" src="img/sq_minus_icon25.png" ng-click="extend = false" ng-show="extend" /> 
+			<input type="checkbox" ng-model="group.selected"  ng-change="changeGroupSelection(group)">{{ group.name }} <br>
+			<div class="filter-item" ng-repeat="item in group.items | filter : filteringText" ng-show="extend">
+				<input type="checkbox" ng-model="item.selected">{{ item.name }} <br>
+			</div>
+		</div>
+
+	</div>
+	</script> 
+	
+	
+	
 </head>
 <body ng-controller="FilterController" >
 
@@ -22,8 +46,8 @@
 		</tbody>
 	</table>
 	
-	<script src="lib/angular-1.2.1.js"></script>
-	<script src="lib/angular-resource.js"></script>
+	<script src="lib/angular/angular-1.2.1.js"></script>
+	<script src="lib/angular/angular-resource.js"></script>
 	<script src="js/dashboard.js"></script>
 	<script src="js/dashboard-controllers.js"></script>
 	<script src="js/dashboard-directives.js"></script>
