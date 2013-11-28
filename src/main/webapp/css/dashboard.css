@@ -28,6 +28,9 @@
 	border-radius : 3px;	
 	color: #555555;	
 	background-color: #ffffff;
+	position: absolute;
+	/* float: right; */
+	z-index: 100;
 }
 
 td {

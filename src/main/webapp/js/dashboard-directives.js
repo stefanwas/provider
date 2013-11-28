@@ -1,6 +1,6 @@
 /* Directives */
 
-angular.module('dashboard.directives', [])
+angular.module('dashboard.directives', ['ui.bootstrap.typeahead'])
 	.directive('hierarchicalFilter', function () {
 	
 		function link(scope, element, attrs) {
@@ -66,4 +66,12 @@ angular.module('dashboard.directives', [])
 	        templateUrl: 'templates/flat-filter.tpl.html',
 	        link : link
 	    };
-	}) ;
+	})
+	
+	.directive('searchFilter', function () {
+	    return {
+	        restrict: 'E',
+	        scope: {collection: '='},
+	        templateUrl: 'templates/search-filter.tpl.html'
+	    };		
+	});

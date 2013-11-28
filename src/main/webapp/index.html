@@ -2,6 +2,7 @@
 <html lang="en" ng-app="dashboard">
 <head>
 	<title>Management Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,8 +23,6 @@
 		</tbody>
 	</table>
 
-	<br/>
-	
 	<table>
 		<tbody>
 			<tr>
@@ -38,8 +37,25 @@
 		</tbody>
 	</table>
 	
+	<table class='container-fluid'>
+		<tbody>
+			<tr>
+				<td>Card types</td>
+			</tr>
+			<tr>
+				<td><pre>Model: {{selected| json}}</pre></td>
+			</tr>
+			<tr>
+				<td><input type="text" ng-model="selected" typeahead="item for item in states | filter:$viewValue | limitTo:5"></td>
+			</tr>
+			
+		</tbody>
+	</table>	
+	
 	<script src="lib/angular/angular-1.2.1.js"></script>
 	<script src="lib/angular/angular-resource.js"></script>
+	<script src="lib/bootstrap/ui-bootstrap-tpls-0.7.0.js"></script>
+	<script src="lib/bootstrap/ui-bootstrap-0.7.0.js"></script>
 	<script src="js/dashboard.js"></script>
 	<script src="js/dashboard-controllers.js"></script>
 	<script src="js/dashboard-directives.js"></script>
