@@ -4,7 +4,8 @@
 var dashboard = angular.module('dashboard', [
 //     'ngResource',
      'dashboard.directives',
-     'dashboard.controllers']);
+     'dashboard.controllers',
+     'dashboard.services']);
 
 
 
