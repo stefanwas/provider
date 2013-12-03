@@ -74,4 +74,21 @@ angular.module('dashboard.directives', ['ui.bootstrap.typeahead'])
 	        scope: {collection: '='},
 	        templateUrl: 'templates/search-filter.tpl.html'
 	    };		
+	})
+
+	
+	.directive('autoComplete', function($timeout) {
+		return function(scope, element, attrs) {
+			element.autocomplete({
+				source : scope[attrs.uiItems],
+				select : function() {
+					$timeout(function() {
+						element.trigger('input');
+					}, 0);
+				}
+			});
+		};
 	});
+	
+	
+

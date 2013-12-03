@@ -2,7 +2,7 @@
 <html lang="en" ng-app="dashboard">
 <head>
 	<title>Management Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css" /> -->
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,21 +37,40 @@
 		</tbody>
 	</table>
 	
+<!-- 	<span>---------------------------------------</span>
+	<br/>
+	
 	<table class='container-fluid'>
 		<tbody>
 			<tr>
 				<td>Locations</td>
 			</tr>
 			<tr>
-				<td><input class="input-text" type="text" ng-model="selected" typeahead="location for location in locations | filter:$viewValue | limitTo:5"></td>
+				<td><input class="input-text" type="text" ng-model="selected" typeahead="location for location in states | filter:$viewValue | limitTo:8"></td>
 			</tr>
 			
 		</tbody>
 	</table>	
+	<span>---------------------------------------</span>
+	<br/> -->
+	<br/>
 	
-				
-	<pre>Model: {{selected| json}}</pre>
-			
+
+	<pre>Selected locations: {{allSelected}}</pre>
+	<br/>
+	Locations:
+	<br/>	
+	<input type="text" value="All" ng-model="filteringText" class="input-text" ng-focus="showDropdown=true" ng-init="showDropdown=false" /> 
+	<div class="filter" ng-show="showDropdown" ng-mouseleave="showDropdown=false">
+		<ul>
+			<li ng-repeat="item in locations2 | filter : filteringText | limitTo : 10">
+				<input type="checkbox" ng-model="item.selected" ng-change="addOrRemove(item.name)">{{ item.name }}
+			</li>
+		</ul>
+	</div>
+
+	<br />
+	
 	
 	<script src="lib/angular/angular-1.2.1.js"></script>
 	<script src="lib/angular/angular-resource.js"></script>
