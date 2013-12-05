@@ -5,7 +5,7 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<display-name>AngularJS Tester</display-name>
+	<display-name>Provider</display-name>
 
 	<servlet>
 		<servlet-name>FilterDataProviderServlet</servlet-name>
