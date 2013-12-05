@@ -44,7 +44,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>/filter-data-provider</contextPath>
+						<contextPath>/provider</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
