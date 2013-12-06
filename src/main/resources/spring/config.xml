@@ -20,8 +20,8 @@
     </jaxrs:server>
     
     <bean id="filterDataProviderWS" class="com.abb.nps.mgntboard.FilterDataProvider">
-    	<property name="dataSource" ref="dataSource"/>
+    	<property name="dataSource" ref="mockDataSource"/>
     </bean>
     
-    <bean id="dataSource" class="com.abb.nps.mgntboard.data.MockDataSource"></bean>
+    <bean id="mockDataSource" class="com.abb.nps.mgntboard.data.MockDataSource"></bean>
 </beans>

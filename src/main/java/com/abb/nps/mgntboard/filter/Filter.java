@@ -13,17 +13,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Filter {
 
 	@XmlElement
-	private String filterName;
+	private String name;
 
 	@XmlElement
 	private final List<String> items = new ArrayList<>();
 
-	public String getFilterName() {
-		return filterName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFilterName(String filterName) {
-		this.filterName = filterName;
+	public void setName(String filterName) {
+		this.name = filterName;
 	}
 
 	public List<String> getItems() {

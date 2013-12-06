@@ -24,25 +24,38 @@ public class FilterDataProvider {
 	
 	private MockDataSource dataSource;
 	
-	private List<FlatFilter> flatFilters = new ArrayList<>(); 
-	private List<HierarchicalFilter> hierarchicalFilters = new ArrayList<>(); 
-	
 	@GET
 	@Path("/filter/{filterName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Filter getFilterDataJson(@Context HttpServletResponse response, @PathParam("filterName") String filterName) {
 		response.addHeader("Access-Control-Allow-Origin", "*");
-
+		
 		System.out.println(">>>REQ:[filterName="+filterName+"]");
+
+		return createFilter(filterName);
+	}
+	
+	private Filter createFilter(String name) {
 		
 		Filter filter = new Filter();
-		filter.setFilterName(filterName);
-		filter.getItems().addAll(this.dataSource.getFilterData(filterName));
+		filter.setName(name);
+		filter.getItems().addAll(this.dataSource.getFilterData(name));
 		
 		return filter;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	// experiments below
+	
+	private List<FlatFilter> flatFilters = new ArrayList<>(); 
+	private List<HierarchicalFilter> hierarchicalFilters = new ArrayList<>(); 
 	
 	@GET
 	@Path("/json/filterData")
