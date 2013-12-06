@@ -2,18 +2,17 @@ package com.abb.nps.mgntboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.abb.nps.mgntboard.filter.FilterItem;
+import com.abb.nps.mgntboard.filter.Filter;
 import com.abb.nps.mgntboard.filter.FilterData;
+import com.abb.nps.mgntboard.filter.FilterItem;
 import com.abb.nps.mgntboard.filter.FlatFilter;
 import com.abb.nps.mgntboard.filter.HierarchicalFilter;
 
@@ -22,6 +21,22 @@ public class FilterDataProvider {
 	
 	private List<FlatFilter> flatFilters = new ArrayList<>(); 
 	private List<HierarchicalFilter> hierarchicalFilters = new ArrayList<>(); 
+	
+	@GET
+	@Path("/filter/{filterName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Filter getFilterDataJson(@PathParam("filterName") String filterName) {
+
+		System.out.println(">>>REQ:[filterName="+filterName+"]");
+		
+		Filter filter = new Filter();
+		
+		filter.setFilterName(filterName);
+		filter.getItems().addAll(Arrays.asList("Poland", "Ukraine", "Germany", "France"));
+		
+		return filter;
+	}
+	
 	
 	@GET
 	@Path("/json/filterData")
@@ -49,10 +64,8 @@ public class FilterDataProvider {
 	
 	
 	
-	private List<Event> events = new ArrayList<Event>();
 
 	public FilterDataProvider() {
-		init();
 		initFlatFilterContent();
 		initHierarchicalFilterContent();
 		System.out.println(">>>EventProviderStarted!");
@@ -103,55 +116,4 @@ public class FilterDataProvider {
 		return item;
 	}
 
-	private void init() {
-		Event e1 = createEvent("Wojtek", "logged in");
-		Event e2 = createEvent("Stefan", "logged out");
-		Event e3 = createEvent("Marian", "waiting...");
-		Event e4 = createEvent("Tomek:-)", "doing nothing");
-
-		events.add(e1);
-		events.add(e2);
-		events.add(e3);
-		events.add(e4);
-	}
-	
-	@GET
-	@Path("/json/events")
-	@Produces(MediaType.APPLICATION_JSON)
-	public EventContainer getEventsJson() {
-		EventContainer log = new EventContainer();
-		log.setEvents(this.events);
-		return log;
-	}
-
-	@GET
-	@Path("/xml/events")
-	@Produces(MediaType.APPLICATION_XML)
-	public EventContainer getEventsXml() {
-		EventContainer log = new EventContainer();
-		log.setEvents(this.events);
-		return log;
-	}
-
-	@POST
-	@Path("/addEvent")
-	@Produces(MediaType.APPLICATION_XML)
-	@Consumes(MediaType.APPLICATION_XML)
-	public void addApplicationEvent(Event event) {
-		event.setDate(new Date());
-		this.events.add(event);
-	}
-
-	
-	
-	
-	private Event createEvent(String user, String desc) {
-
-		Event e = new Event();
-		e.setDate(new Date());
-		e.setUser(user);
-		e.setDescription(desc);
-
-		return e;
-	}
 }
