@@ -36,10 +36,7 @@ public class FilterDataProvider {
 		System.out.println(">>>REQ:[filterName="+filterName+"]");
 		
 		Filter filter = new Filter();
-		
 		filter.setFilterName(filterName);
-		
-//		filter.getItems().addAll(Arrays.asList("Poland", "Ukraine", "Germany", "France"));
 		filter.getItems().addAll(this.dataSource.getFilterData(filterName));
 		
 		return filter;
