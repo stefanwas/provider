@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.abb.nps.mgntboard.data.MockDataSource;
 import com.abb.nps.mgntboard.filter.Filter;
 import com.abb.nps.mgntboard.filter.FilterData;
 import com.abb.nps.mgntboard.filter.FilterItem;
@@ -19,24 +22,30 @@ import com.abb.nps.mgntboard.filter.HierarchicalFilter;
 @Path("/")
 public class FilterDataProvider {
 	
+	private MockDataSource dataSource;
+	
 	private List<FlatFilter> flatFilters = new ArrayList<>(); 
 	private List<HierarchicalFilter> hierarchicalFilters = new ArrayList<>(); 
 	
 	@GET
 	@Path("/filter/{filterName}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Filter getFilterDataJson(@PathParam("filterName") String filterName) {
+	public Filter getFilterDataJson(@Context HttpServletResponse response, @PathParam("filterName") String filterName) {
+		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		System.out.println(">>>REQ:[filterName="+filterName+"]");
 		
 		Filter filter = new Filter();
 		
 		filter.setFilterName(filterName);
-		filter.getItems().addAll(Arrays.asList("Poland", "Ukraine", "Germany", "France"));
+		
+//		filter.getItems().addAll(Arrays.asList("Poland", "Ukraine", "Germany", "France"));
+		filter.getItems().addAll(this.dataSource.getFilterData(filterName));
 		
 		return filter;
 	}
 	
+	// experiments below
 	
 	@GET
 	@Path("/json/filterData")
@@ -116,4 +125,11 @@ public class FilterDataProvider {
 		return item;
 	}
 
+	public void setDataSource(MockDataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	
+	
+	
 }
