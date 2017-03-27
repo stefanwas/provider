@@ -19,9 +19,9 @@
         </jaxrs:features>
     </jaxrs:server>
     
-    <bean id="filterDataProviderWS" class="com.abb.nps.mgntboard.FilterDataProvider">
+    <bean id="filterDataProviderWS" class="com.stefan.mgntboard.FilterDataProvider">
     	<property name="dataSource" ref="mockDataSource"/>
     </bean>
     
-    <bean id="mockDataSource" class="com.abb.nps.mgntboard.data.MockDataSource"></bean>
+    <bean id="mockDataSource" class="com.stefan.mgntboard.data.MockDataSource"></bean>
 </beans>
